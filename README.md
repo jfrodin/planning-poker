@@ -1,5 +1,7 @@
 # Planning Poker
 
+[Repo](https://github.com/jfrodin/planning-poker) · [Senaste release](https://github.com/jfrodin/planning-poker/releases/latest)
+
 En liten app för teamets refinement. Inga konton eller databas. Kör på en dator och dela ett slumpmässigt rum med kollegorna, även hemifrån via en tillfällig HTTPS-tunnel.
 
 ## Kom igång
@@ -98,13 +100,13 @@ ZIP-filerna hamnar i `outputs`. Windows-paketet är för Windows 10/11 x64. Mac-
 
 Mottagaren packar upp hela mappen och dubbelklickar på **Starta.cmd** (Windows) eller **Starta.command** (Mac). Appen väljer lediga lokala portar, öppnar webbläsaren och skapar en Cloudflare-länk. **Starta-lokalt** använder bara den egna datorn. Ingen Node- eller npm-installation behövs. Fönstret måste vara öppet under mötet; Ctrl+C avslutar sessionen. CSV-filer sparas i `sessions` i den uppackade mappen.
 
-Paketet innehåller inga befintliga sessioner, privata rumsnycklar eller miljöfiler. Det är ett portabelt ZIP-paket med startfil, och är inte signerat som en installerad skrivbordsapp. Företagets Windows-policy kan därför kräva att IT godkänner körningen. Windows-paketet behöver funktionstestas på en Windows-dator; Mac-bygget kan inte verifiera Windows säkerhetsdialoger eller företagsregler.
+Paketet innehåller inga befintliga sessioner, privata rumsnycklar eller miljöfiler. Det är ett portabelt ZIP-paket med startfil, och är inte signerat som en installerad skrivbordsapp. Företagets Windows-policy kan därför kräva att IT godkänner körningen. Releaseflödet testar paketet på en Windows-runner. Företagets säkerhetsdialoger och regler kan ändå behöva kontrolleras på mottagarens dator.
 
 Produktionsappen använder en enda port för gränssnitt, HTTP-API och WebSocket. Öppna bara adressen som skrivs ut av Planning Poker. Version 0.1.0 visade även en separat gränssnittsadress där formuläret syntes men skapa-rum-anropet saknade API; detta är åtgärdat i 0.1.1.
 
 ## GitHub och releaser
 
-Repot bör vara privat om koden bara ska delas inom teamet. Kollegor kan hämta färdiga ZIP-filer under **Releases** när de har åtkomst till repot. Sessionsfiler, lokala verktyg, byggen och ZIP-filer är git-ignorerade.
+Repot är privat under `jfrodin/planning-poker`. Kollegor kan hämta färdiga ZIP-filer under **Releases** när de har åtkomst till repot. Sessionsfiler, lokala verktyg, byggen och ZIP-filer är git-ignorerade.
 
 Vid push till `main` och vid pull requests kör GitHub Actions typkontroll, tester, produktionsbygge och API-test på Windows. En versionstagg, exempelvis `v0.1.2`, kör dessutom paketeringen på Windows, packar upp ZIP-filen och testar `Starta-lokalt.cmd` med den medföljande Node-versionen. Testet skapar ett rum, ansluter en deltagare och verifierar WebSocket utan att starta en publik tunnel.
 
@@ -126,4 +128,4 @@ gh auth login
 gh repo create planning-poker --private --source=. --remote=origin --push
 ```
 
-Arbetsflödena ligger i `.github/workflows`. De är förberedda lokalt men behöver köras på GitHub för att Windows-miljön ska vara verifierad. GitHub Releases distribuerar paketet; själva planning poker-sessionen körs fortfarande på värdens dator.
+Arbetsflödena ligger i `.github/workflows`. Första releasen, `v0.1.1`, har byggts, paketerats och funktionstestats på Windows i GitHub Actions. GitHub Releases distribuerar paketet; själva planning poker-sessionen körs fortfarande på värdens dator.
