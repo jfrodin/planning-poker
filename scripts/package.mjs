@@ -42,7 +42,9 @@ await rm(staging, { recursive: true, force: true });
 await mkdir(runtime, { recursive: true });
 await mkdir(path.join(app, 'licenses'), { recursive: true });
 await mkdir(output, { recursive: true });
-for (const directory of ['server', 'public']) await cp(directory, path.join(app, directory), { recursive: true });
+for (const directory of ['server', 'public']) {
+  if (existsSync(directory)) await cp(directory, path.join(app, directory), { recursive: true });
+}
 await cp('dist', path.join(app, 'dist'), { recursive: true, filter: source => path.basename(source) !== '.openai' });
 await mkdir(path.join(app, 'scripts'));
 for (const filename of ['share.mjs', 'launch.mjs']) await cp(path.join('scripts', filename), path.join(app, 'scripts', filename));
