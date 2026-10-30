@@ -1,0 +1,35 @@
+PLANNING POKER {{VERSION}}
+
+1. Packa upp hela ZIP-filen till en vanlig mapp som du kan skriva till.
+2. Windows: dubbelklicka på Starta.cmd. Mac: dubbelklicka på Starta.command.
+3. Webbläsaren öppnas. Skriv ditt namn och skapa ett rum.
+4. Klicka på Dela rumslänk och dela rumslänken.
+
+Bara den som är värd behöver paketet. Kollegorna öppnar rumslänken i valfri webbläsare.
+Du behöver inte installera Node, npm eller cloudflared. Internet behövs för en publik länk.
+
+Låt datorn vara vaken och startfönstret vara öppet under mötet.
+Tryck Ctrl+C i startfönstret för att avsluta.
+Rum och deltagare försvinner när appen stoppas. Nästa start ger en ny länk.
+
+Överenskomna estimat sparas löpande i mappen sessions bredvid startfilen.
+CSV-filen kan öppnas i Excel. Individuella röster och personnamn sparas inte i CSV.
+Du kan även hämta det aktuella rummets estimat med knappen i appen.
+Spara sessions-mappen om du byter till ett nytt paket. Skicka inte med den när du delar appen.
+
+Starta-lokalt startar endast på din dator och skapar ingen publik länk.
+
+Den vanliga startfilen använder Cloudflare Quick Tunnel, en gratis och tillfällig
+HTTPS-länk. Appens trafik, inklusive namn, uppgifter och röster, passerar Cloudflare.
+Alla som har rumslänken kan ansluta. Inget konto krävs. Ingen tillgänglighetsgaranti ges.
+Arbetsnätverket måste tillåta Cloudflare-tunnlar.
+https://developers.cloudflare.com/tunnel/get-started/quick-tunnels/
+
+Paketet är inte signerat som en installerad skrivbordsapp.
+Windows eller Mac kan därför be dig bekräfta första gången. Följ er organisations
+regler för interna verktyg; stäng inte av datorns säkerhetsskydd.
+Windows-paketet är för Windows 10/11 x64. Mac-paketet anger Intel eller Apple Silicon i filnamnet.
+
+I version 0.1.1 används en enda lokal adress för både formuläret och rumsservern.
+Stäng en eventuell äldre version innan du startar den här. Öppna alltid den nya
+länken från startfönstret. Blanda inte filer från olika paketversioner.
